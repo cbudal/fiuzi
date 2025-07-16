@@ -1,0 +1,26 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const submitBtn = document.getElementById('submit-btn');
+    const newCommentInput = document.getElementById('new-comment');
+    const commentsContainer = document.getElementById('comments');
+
+    submitBtn.addEventListener('click', function() {
+        const commentText = newCommentInput.value.trim();
+
+        if (commentText !== '') {
+            const now = new Date();
+            const timestamp = now.toLocaleString();
+
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment');
+            commentDiv.innerHTML = `
+                <div class="metadata">Enviado em: ${timestamp}</div>
+                <p>${commentText}</p>
+            `;
+
+            commentsContainer.appendChild(commentDiv);
+            newCommentInput.value = ''; // Limpa o campo de texto
+        } else {
+            alert('Por favor, insira um comentário.');
+        }
+    });
+});
